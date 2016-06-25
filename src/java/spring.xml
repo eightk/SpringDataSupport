@@ -25,5 +25,4 @@
         <property name="password" value="${MYSQL.PSW}"/>
     </bean> 
     
-    
 </beans>

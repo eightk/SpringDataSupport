@@ -21,7 +21,11 @@ public class JdbcMain {
 
         JdbcDaoImpl dao = ctx.getBean("jdbcDaoImpl", JdbcDaoImpl.class);
 
-        User user = dao.getUser("Richard");
+        User user = dao.getUserById("Richard");
+        
+        System.out.println("# of richard is: " + dao.getUserCount("richard"));
+        
+        System.out.println("# of all user is: " + dao.getAllUser().size());
         
         if(user != null) {
             System.out.println(user.getFirstname() + " " + user.getLastname());
