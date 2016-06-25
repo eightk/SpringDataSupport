@@ -13,7 +13,17 @@
     <context:annotation-config/>
     <context:component-scan base-package="com.spring.jdbc.demo"/>
     
+    <!--this will automatically make the properties file seen by this xml-->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="database.properties"/>
+    </bean>
     
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${MYSQL.DRIVER}"/>
+        <property name="url" value="${MYSQL.URL}"/>
+        <property name="username" value="${MYSQL.USER}"/>
+        <property name="password" value="${MYSQL.PSW}"/>
+    </bean> 
     
     
 </beans>

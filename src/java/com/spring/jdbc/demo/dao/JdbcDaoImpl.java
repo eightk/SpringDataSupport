@@ -13,13 +13,17 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author huico
  */
+@Component
 public class JdbcDaoImpl {
-
+    
     public User getUser(String id) throws SQLException {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -27,8 +31,7 @@ public class JdbcDaoImpl {
         User user = new User();
 
         try {
-            Class.forName(DatabaseDictionary.MYSQLDBDRIVER);
-            conn = DriverManager.getConnection(DatabaseDictionary.MYSQLDBURL, DatabaseDictionary.MYSQLDBUSER, DatabaseDictionary.MYSQLDBPASS);
+            conn = dataSource.getConnection();
             String sql = "SELECT * from user where username = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
@@ -61,5 +64,15 @@ public class JdbcDaoImpl {
         }
         return user;
     }
+    
+    public DataSource getDataSource() {
+        return dataSource;
+    }
 
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+    
+    @Autowired
+    private DataSource dataSource;
 }
