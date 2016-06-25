@@ -37,7 +37,14 @@ public class JdbcDaoImpl {
     public List<User> getAllUser() {
         String sql = "select * from user";
         return jdbcTemplate.query(sql, new UserMapper());
-    }   
+    }
+    
+    public void insertUser(User user) {
+        String sql = "Insert into user values (?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql, new Object[] {user.getUsername(), user.getPassword(), 
+            user.getEmail(), user.getFirstname(), user.getLastname(), user.getAge(), 
+            user.getCreatedate(), user.getLevel()});
+    }
 
     public DataSource getDataSource() {
         return dataSource;

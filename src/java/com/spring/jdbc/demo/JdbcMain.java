@@ -16,18 +16,28 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author huico
  */
 public class JdbcMain {
+
     public static void main(String[] args) throws SQLException {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
         JdbcDaoImpl dao = ctx.getBean("jdbcDaoImpl", JdbcDaoImpl.class);
 
         User user = dao.getUserById("Richard");
-        
+
+        User newUser = new User();
+        newUser.setUsername("Katrina");
+        newUser.setPassword("kat");
+        try {
+            dao.insertUser(newUser);
+        } catch (Exception ex) {
+            System.out.println("Failed to insert user");
+        }
+
         System.out.println("# of richard is: " + dao.getUserCount("richard"));
-        
+
         System.out.println("# of all user is: " + dao.getAllUser().size());
-        
-        if(user != null) {
+
+        if (user != null) {
             System.out.println(user.getFirstname() + " " + user.getLastname());
         } else {
             System.out.println("Failed to load user");
