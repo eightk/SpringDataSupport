@@ -6,6 +6,7 @@
 package com.spring.jdbc.demo;
 
 import com.spring.jdbc.demo.dao.JdbcDaoImpl;
+import com.spring.jdbc.demo.dao.SimpleJdbcDaoImpl;
 import com.spring.jdbc.demo.model.User;
 import java.sql.SQLException;
 import org.springframework.context.ApplicationContext;
@@ -20,7 +21,7 @@ public class JdbcMain {
     public static void main(String[] args) throws SQLException {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
-        JdbcDaoImpl dao = ctx.getBean("jdbcDaoImpl", JdbcDaoImpl.class);
+        SimpleJdbcDaoImpl dao = ctx.getBean("simpleJdbcDaoImpl", SimpleJdbcDaoImpl.class);
 
         User user = dao.getUserById("Richard");
 

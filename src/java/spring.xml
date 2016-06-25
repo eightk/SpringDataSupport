@@ -25,4 +25,8 @@
         <property name="password" value="${MYSQL.PSW}"/>
     </bean> 
     
+    <bean id="simpleJdbcDaoImpl" class="com.spring.jdbc.demo.dao.SimpleJdbcDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
 </beans>
