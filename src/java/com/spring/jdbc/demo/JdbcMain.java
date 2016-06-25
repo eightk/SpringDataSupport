@@ -25,8 +25,8 @@ public class JdbcMain {
         User user = dao.getUserById("Richard");
 
         User newUser = new User();
-        newUser.setUsername("Katrina");
-        newUser.setPassword("kat");
+        newUser.setUsername("Mark");
+        newUser.setPassword("mmm");
         try {
             dao.insertUser(newUser);
         } catch (Exception ex) {
