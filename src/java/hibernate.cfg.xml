@@ -2,34 +2,23 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+        <!-- ========================= -->
+        <!-- MySQL Related Properties -->
+        <!-- ========================= -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/testdb?zeroDateTimeBehavior=convertToNull</property>
-        <property name="hibernate.connection.username">sa</property>
-        <property name="hibernate.connection.password">Treviso1</property>
+        
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>
-
         <!-- Enable Hibernate's automatic session context management -->
         <property name="current_session_context_class">thread</property>
-
         <!-- Disable the second-level cache  -->
         <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
-
         <!-- Echo all executed SQL to stdout -->
-        <property name="show_sql">true</property>
-
-        <!--can be CREATE UPDATE CREATE-DROP VALIDATE
-        CREATE will always drop the existing table and recreate it, losing all the previous data
-        UPDATE will not create a table, so if the table not exist then it will throw an exception, or if there is Id conflict it will also throw exception
-        CREATE-DROP if not closing sessionFactory, it works as create, but once close sessionFactory, it will drop all the table created.
-        VALIDATE will only compare the db and the model annotation to see whether they are the same, if not the same then throw exception.
-        
-        -->
-        <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">create</property>
-    
-        <!-- Names and annotated entity class -->
-        <mapping class="com.spring.hibernate.demo.model.User"/>
+        <property name="show_sql">false</property>        
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.id.new_generator_mappings">true</property>
+        <property name="hibernate.jdbc.batch_size">1</property>
+        <property name="hibernate.max_fetch_depth">1</property>
+            
     </session-factory>
 </hibernate-configuration>
