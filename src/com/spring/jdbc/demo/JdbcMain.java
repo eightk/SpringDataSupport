@@ -5,7 +5,6 @@
  */
 package com.spring.jdbc.demo;
 
-import com.spring.jdbc.demo.dao.JdbcDaoImpl;
 import com.spring.jdbc.demo.dao.SimpleJdbcDaoImpl;
 import com.spring.jdbc.demo.model.User;
 import java.sql.SQLException;
